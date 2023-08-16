@@ -89,18 +89,18 @@ services:
       - 'traefik.http.services.mb-server-svc.loadbalancer.server.port=80'
 
   mdp-mongo:
-    image: mongo:6.0.3
+    image: mongo:4.4.6
     container_name: mdp-mongo
     restart: unless-stopped
     ports:
       - '27017'
-    environment:
-      # forwarded
-    - MONGO_INITDB_DATABASE
-    - MONGO_INITDB_ROOT_USERNAME
-    - MONGO_INITDB_ROOT_PASSWORD
-    # env_file:
-    #   - ./server/.env
+    #environment:
+    #  # forwarded
+    #- MONGO_INITDB_DATABASE
+    #- MONGO_INITDB_ROOT_USERNAME
+    #- MONGO_INITDB_ROOT_PASSWORD
+    env_file:
+      - ./server/.env
     volumes:
       - ./server/docker/mongo-data:/data/db
     networks:
